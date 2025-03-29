@@ -1,0 +1,37 @@
+@model pizzashop_repository.ViewModels.ModifierGroupViewModel
+
+<div class="modifier-group" data-group-id="@Model.Id">
+    <div class="d-flex justify-content-between align-items-center">
+        <h6>@Model.Name</h6>
+        <button type="button" class="btn btn-sm remove-group">
+            <img src="~/images/icons/trash.svg">
+        </button>
+    </div>
+
+    <div class="d-flex">
+        <select class="form-control qty-selector me-2">
+            @for (int i = 0; i <= 3; i++)
+            {
+                <option value="@i">@i</option>
+            }
+        </select>
+        <select class="form-control qty-selector">
+            @for (int i = 0; i <= 3; i++)
+            {
+                <option value="@i">@i</option>
+            }
+        </select>
+    </div>
+
+    <ul class="mt-2">
+        @foreach (var modifier in Model.AvailableModifiers)
+        {
+            <li>
+                <div class="d-flex justify-content-between">
+                    <div>@modifier.Name</div>
+                    <div>@modifier.Price</div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

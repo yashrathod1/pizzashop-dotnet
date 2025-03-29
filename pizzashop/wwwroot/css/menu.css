@@ -1,0 +1,95 @@
+
+/* menu bar */
+
+.menu-tabbar {
+    border: none;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #0568a8;
+    background-color: white;
+    text-decoration: underline;
+
+}
+
+.nav-link {
+    color: black;
+}
+
+.category-color {
+    background-color: #f8f8f8;
+    border-right: 1px solid #0066a7;
+}
+
+
+
+.menu-new-item-btn {
+    background-color: #0066a7 !important;
+    color: white;
+
+}
+
+.g-white {
+    color: #7e8696;
+}
+
+.custom-switch {
+    width: 50px !important;
+    height: 25px;
+}
+.form-check-input:checked {
+    background-color: #0066a7;
+    border-color: #0066a7;
+}
+
+.trash-btn {
+    border: none;
+    background-color: white;
+}
+
+.warning-img {
+    width: 40px;
+    height: 40px;
+
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.food-icon {
+    width: 20px;
+}
+.category-list, .modifiergroup-list{
+        height: 300px;
+        overflow: auto;
+}
+
+.sixdot-icon{
+    height: 25px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0%;
+}
+
+.category-sidebar, .modifiergroup-sidebar {
+    text-decoration: none;
+    color: #7e8696;
+    font-weight: bold;
+}
+
+.custom-modal-modifiergroup {
+    max-width: 700px !important;
+}
+
+.modifiergroup-item.selected {
+    color: blue !important;
+    font-weight: bold;
+}
