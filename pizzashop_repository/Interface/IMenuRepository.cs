@@ -22,6 +22,8 @@ public interface IMenuRepository
 
     Task<bool> AddItemAsync(MenuItem item);
 
+    Task<bool> AddItemModifiersAsync(List<MappingMenuItemWithModifier> mappings);
+
     Task<bool> UpdateItemAsync(MenuItem item);
 
     MenuItem? GetItemsById(int id);

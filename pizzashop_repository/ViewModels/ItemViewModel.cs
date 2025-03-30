@@ -6,7 +6,7 @@ namespace pizzashop_repository.ViewModels
 {
     public class ItemViewModel
     {
-         public int Id { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Name is required.")]
         public string Name { get; set; }
@@ -30,7 +30,8 @@ namespace pizzashop_repository.ViewModels
         [StringLength(10, ErrorMessage = "Unit cannot exceed 10 characters.")]
         public string Unit { get; set; }
 
-        [StringLength(10, ErrorMessage = "Short Code cannot exceed 10 characters.")]
+        [Required(ErrorMessage = "Short Code is required.")]
+        [StringLength(10, ErrorMessage = "Short Code must be between 2 and 10 characters.", MinimumLength = 2)]
         public string? ShortCode { get; set; }
 
         [StringLength(500, ErrorMessage = "Description cannot exceed 500 characters.")]
@@ -48,7 +49,9 @@ namespace pizzashop_repository.ViewModels
 
         public string? ItemImagePath { get; set; }
 
-        public string? ModifierGroups { get; set; }
+        public List<ItemModifierGroupViewModel>? ModifierGroups { get; set; } = new List<ItemModifierGroupViewModel>();
+
+        public List<int>? AssignedModifierGroups { get; set; }
 
         public string ItemTypeIcon
         {
@@ -64,4 +67,16 @@ namespace pizzashop_repository.ViewModels
             }
         }
     }
+}
+
+
+public class ItemModifierGroupViewModel
+{
+    public int GroupId { get; set; }
+
+  
+    public int MinQuantity { get; set; } 
+
+    
+    public int MaxQuantity { get; set; }
 }

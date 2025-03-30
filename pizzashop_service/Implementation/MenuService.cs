@@ -73,9 +73,8 @@ public class MenuService : IMenuService
 
 
 
-    public async Task<bool> AddItemAsync(ItemViewModel model)
+     public async Task<bool> AddItemAsync(ItemViewModel model)
     {
-
         var newItem = new MenuItem
         {
             Name = model.Name,
@@ -90,10 +89,24 @@ public class MenuService : IMenuService
             ShortCode = model.ShortCode,
             Description = model.Description,
             ItemImage = model.ItemImagePath
-
         };
 
-        return await _menuRepository.AddItemAsync(newItem);
+        bool itemAdded = await _menuRepository.AddItemAsync(newItem);
+
+        if (itemAdded && model.ModifierGroups != null && model.ModifierGroups.Any())
+        {
+            var modifierMappings = model.ModifierGroups.Select(mg => new MappingMenuItemWithModifier
+            {
+                MenuItemId = newItem.Id,
+                ModifierGroupId = mg.GroupId,
+                MinModifierCount = mg.MinQuantity,
+                MaxModifierCount = mg.MaxQuantity
+            }).ToList();
+
+            return await _menuRepository.AddItemModifiersAsync(modifierMappings);
+        }
+
+        return itemAdded;
     }
 
     public async Task<bool> UpdateItemAsync(ItemViewModel model, int id)

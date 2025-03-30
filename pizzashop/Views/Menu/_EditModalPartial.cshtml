@@ -9,128 +9,133 @@
         <div class="modal-body">
             <form id="editMenuItemForm" method="post" enctype="multipart/form-data">
                 <div class="row">
-                    <div class=" row col-md-8">
+                    <div class="row col-md-8">
                         <!-- Category -->
                         <div class="col-md-6 col-12">
-                            <label for="Categoryid" class="form-label">Category</label>
-                            <select class="form-select" id="categoryid" name="Categoryid">
+                            <label asp-for="item.Categoryid" class="form-label"></label>
+                            <select asp-for="item.Categoryid" class="form-select" id="categoryid">
                                 <option value="" selected>Select Category</option>
                                 @foreach (var category in Model.Categories)
                                 {
-                                    <option value="@category.Id">
-                                        @category.Name
-                                    </option>
-
+                                    <option value="@category.Id">@category.Name</option>
                                 }
                             </select>
+                            <span asp-validation-for="item.Categoryid" class="text-danger"></span>
                         </div>
+
                         <!-- Name -->
                         <div class="col-md-6 col-12">
-                            <label for="Name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="Name" name="Name" required />
+                            <label asp-for="item.Name" class="form-label"></label>
+                            <input asp-for="item.Name" class="form-control" id="Name1" />
+                            <span asp-validation-for="item.Name" class="text-danger"></span>
                         </div>
 
                         <!-- Item Type -->
                         <div class="col-md-3 mt-3 col-12">
-                            <label for="ItemType" class="form-label">Item Type</label>
-                            <select class="form-select" id="ItemType" name="ItemType">
+                            <label asp-for="item.ItemType" class="form-label"></label>
+                            <select asp-for="item.ItemType" class="form-select" id="ItemType1">
                                 <option value="">Select a type</option>
                                 <option value="Veg">Veg</option>
                                 <option value="Non-Veg">Non-Veg</option>
                                 <option value="Vegan">Vegan</option>
                             </select>
+                            <span asp-validation-for="item.ItemType" class="text-danger"></span>
                         </div>
 
                         <!-- Rate -->
                         <div class="col-md-3 mt-3">
-                            <label for="Rate" class="form-label">Rate</label>
-                            <input type="number" class="form-control" id="Rate" name="Rate" value="0" required />
+                            <label asp-for="item.Rate" class="form-label"></label>
+                            <input asp-for="item.Rate" class="form-control" id="Rate1" />
+                            <span asp-validation-for="item.Rate" class="text-danger"></span>
                         </div>
+
                         <!-- Quantity -->
                         <div class="col-md-3 mt-3">
-                            <label for="Quantity" class="form-label">Quantity</label>
-                            <input type="number" class="form-control" id="Quantity" name="Quantity" value="0"
-                                required />
+                            <label asp-for="item.Quantity" class="form-label"></label>
+                            <input asp-for="item.Quantity" class="form-control" id="Quantity1" />
+                            <span asp-validation-for="item.Quantity" class="text-danger"></span>
                         </div>
 
                         <!-- Unit -->
                         <div class="col-md-3 mt-3">
-                            <label for="Unit" class="form-label">Unit</label>
-                            <select class="form-select" id="Unit" name="Unit">
-                                <option selected>Select a unit</option>
+                            <label asp-for="item.Unit" class="form-label"></label>
+                            <select asp-for="item.Unit" class="form-select" id="Unit1">
+                                <option value="">Select a unit</option>
                                 <option value="Pieces">Pieces</option>
                                 <option value="Grams">Grams</option>
                             </select>
-
+                            <span asp-validation-for="item.Unit" class="text-danger"></span>
                         </div>
+
 
                         <!-- Availability Toggle -->
                         <div class="col-md-3 mt-3 d-flex text-center align-items-center justify-content-center">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="IsAvailable" name="IsAvailable"
-                                    value="true" style="width: 55px; height: 25px; margin-top: 8px;">
+                                <input asp-for="item.IsAvailable" class="form-check-input" type="checkbox"
+                                    id="IsAvailable1" value="true" style="width: 55px; height: 25px; margin-top: 8px;">
                                 <input type="hidden" name="IsAvailable" value="false">
-
-                                <label class="form-check-label m-2" for="IsAvailable">Available</label>
+                                <label class="form-check-label m-2" for="IsAvailable1">Available</label>
                             </div>
                         </div>
 
                         <!-- Default Tax Toggle -->
                         <div class="col-md-3 mt-3 d-flex text-center align-items-center justify-content-center">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="IsDefaultTax" name="IsDefaultTax"
-                                    value="true" style="width: 55px; height: 25px; margin-top: 8px;">
-
+                                <input asp-for="item.IsDefaultTax" class="form-check-input" type="checkbox"
+                                    id="IsDefaultTax1" value="true" style="width: 55px; height: 25px; margin-top: 8px;">
                                 <input type="hidden" name="IsDefaultTax" value="false">
-
-                                <label class="form-check-label m-2" for="IsDefaultTax">Default Tax</label>
+                                <label class="form-check-label m-2" for="IsDefaultTax1">Default Tax</label>
                             </div>
                         </div>
 
                         <!-- Tax Percentage -->
                         <div class="col-md-3 mt-3">
-                            <label for="Tax" class="form-label">Tax Percentage</label>
-                            <input type="number" class="form-control" id="TaxPercentage" name="TaxPercentage" />
+                            <label asp-for="item.TaxPercentage" class="form-label"></label>
+                            <input asp-for="item.TaxPercentage" class="form-control" id="TaxPercentage1" />
+                            <span asp-validation-for="item.TaxPercentage" class="text-danger"></span>
                         </div>
 
                         <!-- Short Code -->
                         <div class="col-md-3 mt-3">
-                            <label for="ShortCode" class="form-label">Short Code</label>
-                            <input type="text" class="form-control" id="ShortCode" name="ShortCode" />
+                            <label asp-for="item.ShortCode" class="form-label"></label>
+                            <input asp-for="item.ShortCode" class="form-control" id="ShortCode1" />
+                            <span asp-validation-for="item.ShortCode" class="text-danger"></span>
                         </div>
 
                         <!-- Description -->
                         <div class="col-md-12 mt-3">
-                            <label for="Description" class="form-label">Description</label>
-                            <textarea class="form-control" id="Description" name="Description"></textarea>
+                            <label asp-for="item.Description" class="form-label"></label>
+                            <textarea asp-for="item.Description" class="form-control" id="Description1"></textarea>
+                            <span asp-validation-for="item.Description" class="text-danger"></span>
                         </div>
 
-                        <input type="hidden" id="ItemId" name="ItemId">
+                        <input type="hidden" asp-for="item.Id" id="ItemId1">
 
                         <!-- Upload Image -->
                         <div class="col-md-12 mt-3">
-                            <label for="Image" class="form-label">Upload Image</label>
+                            <label asp-for="item.ItemPhoto" class="form-label"></label>
                             <div class="border p-3 text-center" style="border: 2px dashed #ccc;">
-                                <input type="file" id="Image" name="ItemPhoto" class="form-control d-none" />
-                                <label for="Image" class="text-primary">Drag and Drop or Browse
-                                    Files</label>
+                                <input asp-for="item.ItemPhoto" class="form-control d-none" id="Image1" />
+                                <label for="Image1" class="text-primary">Drag and Drop or Browse Files</label>
                             </div>
+                            <span asp-validation-for="item.ItemPhoto" class="text-danger"></span>
                         </div>
                     </div>
+
                     <div class="col-md-4" style="background-color: #fdf5e6;">
                         <!-- Modifier Groups -->
                         <div class="mt-3">
-                            <label for="ModifierGroups" class="form-label">Modifier Groups</label>
-                            <select class="form-select" id="ModifierGroups" name="ModifierGroups">
+                            <label asp-for="ModifierGroups" class="form-label"></label>
+                            <select asp-for="ModifierGroups" class="form-select" id="ModifierGroups1">
                                 <option value="" selected>Select ModifierGroups</option>
                                 @foreach (var modifiergroup in Model.ModifierGroup)
                                 {
-                                    <option value="@modifiergroup.Id">
-                                        @modifiergroup.Name
-                                    </option>
-
+                                    <option value="@modifiergroup.Id">@modifiergroup.Name</option>
                                 }
                             </select>
+                            <span asp-validation-for="ModifierGroups" class="text-danger"></span>
+                            <div class="modifierContainerForEdit"
+                                style="max-height: 360px; overflow-y: auto; padding: 5px;"></div>
                         </div>
                     </div>
                 </div>
@@ -138,9 +143,12 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                style="padding: 6px !important; border: 1px solid #0066a7; background: transparent; color: #0066a7;">Cancel</button>
-            <button type="submit" class="btn btn-primary" form="editMenuItemForm"
-                style=" padding: 6px !important;">Save</button>
+                style="padding: 6px !important; border: 1px solid #0066a7; background: transparent; color: #0066a7;">
+                Cancel
+            </button>
+            <button type="submit" class="btn btn-primary" form="editMenuItemForm" style="padding: 6px !important;">
+                Save
+            </button>
         </div>
     </div>
 </div>

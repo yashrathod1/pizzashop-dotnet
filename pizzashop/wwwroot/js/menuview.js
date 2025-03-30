@@ -280,7 +280,21 @@ $(document).on("change", "#itemsPerPage", function () {
 //     });
 //     }); *@
 
-// @* edit item *@
+
+function loadModifierGroupsIntoItemModal(itemId) {
+    $.ajax({
+        url: '/Menu/LoadModifierGroupsIntoModal',
+        type: 'GET',
+        data: { id: itemId },
+        success: function (data) {
+            $('#modifierContainerForEdit').html(data);
+        },
+        error: function () {
+            $('#modifierContainerForEdit').html('<p class="text-danger">Failed to load modifier groups.</p>');
+        }
+    });
+}
+
 $(document).on("click", ".edit-item", function () {
     let itemId = $(this).data("id");
 
@@ -290,22 +304,29 @@ $(document).on("click", ".edit-item", function () {
         data: { id: itemId },
         success: function (item) {
             console.log("Item received:", item);
-            console.log("item category id", item.categoryid);
-            $("#ItemId").val(item.id);
+
+            // Fill item details in the modal
+            $("#ItemId1").val(item.id);
             $("#categoryid").val(item.categoryid);
-            $("#Name").val(item.name);
-            $("#Rate").val(item.rate);
-            $("#Quantity").val(item.quantity);
-            $("#Unit").val(item.unit);
-            $("#ItemType").val(item.itemType);
-            $("#ShortCode").val(item.shortCode);
-            $("#Description").val(item.description);
-            $("#TaxPercentage").val(item.taxPercentage);
-            $("#IsAvailable").prop("checked", item.isAvailable);
-            $("#IsDefaultTax").prop("checked", item.isDefaultTax);
+            $("#Name1").val(item.name);
+            $("#Rate1").val(item.rate);
+            $("#Quantity1").val(item.quantity);
+            $("#Unit1").val(item.unit);
+            $("#ItemType1").val(item.itemType);
+            $("#ShortCode1").val(item.shortCode);
+            $("#Description1").val(item.description);
+            $("#TaxPercentage1").val(item.taxPercentage);
+            $("#IsAvailable1").prop("checked", item.isAvailable);
+            $("#IsDefaultTax1").prop("checked", item.isDefaultTax);
 
+            loadModifierGroupsIntoItemModal(item.id);
+    
 
+            // Show the modal after all data is loaded
             $("#EditItemModal").modal('show');
+        },
+        error: function () {
+            console.error("Failed to fetch item details.");
         }
     });
 });
@@ -316,38 +337,86 @@ $("#addMenuItemForm").submit(function (e) {
     e.preventDefault();
 
     if (!$(this).valid()) {
+        console.log("Form validation failed.");
         return;
     }
 
-    var formData = new FormData(this);
-    console.log("formData is", formData);
+    if ($(".modifier-group").length === 0) {
+        toastr.error("Please select at least one modifier group.");
+        return;
+    }
+
+    let formData = new FormData();
+
+    // Append non-file fields manually
+    formData.append("Categoryid", $("#Categoryid").val());
+    formData.append("Name", $("#Name").val());
+    formData.append("ItemType", $("#ItemType").val());
+    formData.append("Rate", $("#Rate").val());
+    formData.append("Quantity", $("#Quantity").val());
+    formData.append("Unit", $("#Unit").val());
+    formData.append("IsAvailable", $("#IsAvailable").is(":checked"));
+    formData.append("IsDefaultTax", $("#IsDefaultTax").is(":checked"));
+    formData.append("TaxPercentage", $("#TaxPercentage").val());
+    formData.append("ShortCode", $("#ShortCode").val());
+    formData.append("Description", $("#Description").val());
+    formData.append("Id", $("#ItemId").val());
+
+    // Handle file upload (ItemPhoto)
+    let itemPhoto = $("#ItemPhoto")[0].files[0];
+    if (itemPhoto) {
+        formData.append("ItemPhoto", itemPhoto);
+    }
+
+    $(".modifier-group").each(function (index) {
+        let groupId = $(this).attr("data-group-id");
+        let minQuantity = $(this).find(".minQuantity").val();
+        let maxQuantity = $(this).find(".maxQuantity").val();
+    
+        formData.append(`ModifierGroups[${index}].GroupId`, groupId);
+        formData.append(`ModifierGroups[${index}].MinQuantity`, minQuantity);
+        formData.append(`ModifierGroups[${index}].MaxQuantity`, maxQuantity);
+    });
+    
+
+
+    console.log("Form Data Contents:");
+    for (let pair of formData.entries()) {
+        console.log(pair[0] + ": " + pair[1]);
+    }
 
     $.ajax({
         url: '/Menu/AddMenuItem',
         type: 'POST',
         data: formData,
-        contentType: false,
-        processData: false,
+        processData: false,  
+        contentType: false, 
         success: function (response) {
-
             if (response.success) {
                 toastr.success("Item added successfully");
                 $("#addMenuItemModal").modal("hide");
                 $("#addMenuItemForm")[0].reset();
+
+                // Reload menu items dynamically
                 let currentCategoryId = $(".category-item.selected").data("id");
                 let pageSize = $("#itemsPerPage").val();
                 let pageNumber = $(".pagination-link.active").data("page");
 
                 loadItems(currentCategoryId, pageNumber, pageSize);
             } else {
-                toastr.error("Failed to Add item");
+                toastr.error("Failed to add item");
             }
         },
-        error: function () {
+        error: function (xhr) {
             toastr.error("Something went wrong");
+            console.error("AJAX Error:", xhr.responseText);
         }
     });
 });
+
+
+
+
 
 $("#editMenuItemForm").submit(function (e) {
     e.preventDefault();
@@ -1361,9 +1430,6 @@ $(document).on("click", "#openExistingModifierEditModal", function () {
 });
 
 
-/// get modifier in item 
-
-
 $(document).ready(function () {
     var selectedGroupsForItem = new Set();
 
@@ -1405,5 +1471,6 @@ $(document).ready(function () {
         groupElement.remove();
     });
 });
+
 
 

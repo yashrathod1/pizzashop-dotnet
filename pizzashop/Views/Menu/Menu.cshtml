@@ -755,145 +755,136 @@
                 </div>
                 <div class="modal-body">
                     <form id="addMenuItemForm" method="post" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class=" row col-md-8">
-                                <!-- Category -->
-                                <div class="col-md-6 col-12">
-                                    <label for="Categoryid" class="form-label">Category</label>
-                                    <select class="form-select" id="Categoryid" name="Categoryid">
-                                        <option value="" selected>Select Category</option>
-                                        @foreach (var category in Model.Categories)
-                                        {
-                                            <option value="@category.Id">
-                                                @category.Name
-                                            </option>
-                                        }
-                                        @* @foreach (var category in Model.Categories)
-                                        {
-                                        <option value="@category.Id">@category.Name</option>
-                                        } *@
-                                    </select>
-                                </div>
-                                <!-- Name -->
-                                <div class="col-md-6 col-12">
-                                    <label for="Name" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="Name" name="Name" required />
-                                </div>
+    <div class="row">
+        <div class="row col-md-8">
+            <!-- Category -->
+            <div class="col-md-6 col-12">
+                <label for="Categoryid" class="form-label">Category</label>
+                <select class="form-select" id="Categoryid"  asp-for="item.Categoryid">
+                    <option value="" selected>Select Category</option>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                </select>
+                <span class="text-danger" asp-validation-for="item.Categoryid"></span>
+            </div>
 
-                                <!-- Item Type -->
-                                <div class="col-md-3 mt-3 col-12">
-                                    <label for="ItemType" class="form-label">Item Type</label>
-                                    <select class="form-select" id="ItemType" name="ItemType">
-                                        <option value="">Select a type</option>
-                                        <option value="Veg">Veg</option>
-                                        <option value="Non-Veg">Non-Veg</option>
-                                        <option value="Vegan">Vegan</option>
+            <!-- Name -->
+            <div class="col-md-6 col-12">
+                <label for="Name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="Name" asp-for="item.Name" />
+                <span class="text-danger" asp-validation-for="item.Name"></span>
+            </div>
 
-                                    </select>
-                                </div>
+            <!-- Item Type -->
+            <div class="col-md-3 mt-3 col-12">
+                <label for="ItemType" class="form-label">Item Type</label>
+                <select class="form-select" id="ItemType" asp-for="item.ItemType">
+                    <option value="">Select a type</option>
+                    <option value="Veg">Veg</option>
+                    <option value="Non-Veg">Non-Veg</option>
+                    <option value="Vegan">Vegan</option>
+                </select>
+                <span class="text-danger" asp-validation-for="item.ItemType"></span>
+            </div>
 
-                                <!-- Rate -->
-                                <div class="col-md-3 mt-3">
-                                    <label for="Rate" class="form-label">Rate</label>
-                                    <input type="number" class="form-control" id="Rate" name="Rate" value="0"
-                                        required />
-                                </div>
-                                <!-- Quantity -->
-                                <div class="col-md-3 mt-3">
-                                    <label for="Quantity" class="form-label">Quantity</label>
-                                    <input type="number" class="form-control" id="Quantity" name="Quantity" value="0"
-                                        required />
-                                </div>
+            <!-- Rate -->
+            <div class="col-md-3 mt-3">
+                <label for="Rate" class="form-label">Rate</label>
+                <input type="number" class="form-control" id="Rate" asp-for="item.Rate" value="0" />
+                <span class="text-danger" asp-validation-for="item.Rate"></span>
+            </div>
 
-                                <!-- Unit -->
-                                <div class="col-md-3 mt-3">
-                                    <label for="Unit" class="form-label">Unit</label>
-                                    <select class="form-select" id="Unit" name="Unit">
-                                        <option selected>Select a unit</option>
-                                        <option value="Pieces">Pieces</option>
-                                        <option value="Grams">Grams</option>
-                                    </select>
+            <!-- Quantity -->
+            <div class="col-md-3 mt-3">
+                <label for="Quantity" class="form-label">Quantity</label>
+                <input type="number" class="form-control" id="Quantity" asp-for="item.Quantity" value="0" />
+                <span class="text-danger" asp-validation-for="item.Quantity"></span>
+            </div>
 
-                                </div>
+            <!-- Unit -->
+            <div class="col-md-3 mt-3">
+                <label for="Unit" class="form-label">Unit</label>
+                <select class="form-select" id="Unit" asp-for="item.Unit">
+                    <option value="" selected>Select a unit</option>
+                    <option value="Pieces">Pieces</option>
+                    <option value="Grams">Grams</option>
+                </select>
+                <span class="text-danger" asp-validation-for="item.Unit"></span>
+            </div>
 
-                                <!-- Availability Toggle -->
-                                <div class="col-md-3 mt-3 d-flex text-center align-items-center justify-content-center">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="IsAvailable"
-                                            name="IsAvailable" value="true"
-                                            style="width: 55px; height: 25px; margin-top: 8px;">
-                                        <input type="hidden" name="IsAvailable" value="false">
+            <!-- Availability Toggle -->
+            <div class="col-md-3 mt-3 d-flex text-center align-items-center justify-content-center">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="IsAvailable" asp-for="item.IsAvailable" value="true" style="width: 55px; height: 25px; margin-top: 8px;">
+                    <input type="hidden" asp-for="item.IsAvailable" value="false">
+                    <label class="form-check-label m-2" for="IsAvailable">Available</label>
+                </div>
+            </div>
 
-                                        <label class="form-check-label m-2" for="IsAvailable">Available</label>
-                                    </div>
-                                </div>
+            <!-- Default Tax Toggle -->
+            <div class="col-md-3 mt-3 d-flex text-center align-items-center justify-content-center">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="IsDefaultTax" asp-for="item.IsDefaultTax" value="true" style="width: 55px; height: 25px; margin-top: 8px;">
+                    <input type="hidden" asp-for="item.IsDefaultTax" value="false">
+                    <label class="form-check-label m-2" for="IsDefaultTax">Default Tax</label>
+                </div>
+            </div>
 
-                                <!-- Default Tax Toggle -->
-                                <div class="col-md-3 mt-3 d-flex text-center align-items-center justify-content-center">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="IsDefaultTax"
-                                            name="IsDefaultTax" value="true"
-                                            style="width: 55px; height: 25px; margin-top: 8px;">
+            <!-- Tax Percentage -->
+            <div class="col-md-3 mt-3">
+                <label for="Tax" class="form-label">Tax Percentage</label>
+                <input type="number" class="form-control" id="TaxPercentage" asp-for="item.TaxPercentage" value="" />
+                <span class="text-danger" asp-validation-for="item.TaxPercentage"></span>
+            </div>
 
-                                        <input type="hidden" name="IsDefaultTax" value="false">
+            <!-- Short Code -->
+            <div class="col-md-3 mt-3">
+                <label for="ShortCode" class="form-label">Short Code</label>
+                <input type="text" class="form-control" id="ShortCode" asp-for="item.ShortCode" value="" />
+                <span class="text-danger" asp-validation-for="item.ShortCode"></span>
+            </div>
 
-                                        <label class="form-check-label m-2" for="IsDefaultTax">Default Tax</label>
-                                    </div>
-                                </div>
+            <!-- Description -->
+            <div class="col-md-12 mt-3">
+                <label for="Description" class="form-label">Description</label>
+                <textarea class="form-control" id="Description" asp-for="item.Description"></textarea>
+                <span class="text-danger" asp-validation-for="item.Description"></span>
+            </div>
 
-                                <!-- Tax Percentage -->
-                                <div class="col-md-3 mt-3">
-                                    <label for="Tax" class="form-label">Tax Percentage</label>
-                                    <input type="number" class="form-control" id="TaxPercentage" name="TaxPercentage" />
-                                </div>
+            <input type="hidden" id="ItemId" asp-for="item.Id">
 
-                                <!-- Short Code -->
-                                <div class="col-md-3 mt-3">
-                                    <label for="ShortCode" class="form-label">Short Code</label>
-                                    <input type="text" class="form-control" id="ShortCode" name="ShortCode" />
-                                </div>
+            <!-- Upload Image -->
+            <div class="col-md-12 mt-3">
+                <label for="ItemPhoto" class="form-label">Upload Image</label>
+                <div class="border p-3 text-center" style="border: 2px dashed #ccc;">
+                    <input type="file" id="ItemPhoto" asp-for="item.ItemPhoto" class="form-control d-none" />
+                    <label for="ItemPhoto" class="text-primary">Drag and Drop or Browse Files</label>
+                </div>
+                <span class="text-danger" asp-validation-for="item.ItemPhoto"></span>
+            </div>
+        </div>
 
-                                <!-- Description -->
-                                <div class="col-md-12 mt-3">
-                                    <label for="Description" class="form-label">Description</label>
-                                    <textarea class="form-control" id="Description" name="Description"></textarea>
-                                </div>
+        <div class="col-md-4" style="background-color: #fdf5e6;">
+            <div class="mt-3">
+                <label for="ModifierGroups" class="form-label">Modifier Groups</label>
+                <select class="form-select" id="modifierGroupDropdownForItem" >
+                    <option value="" selected>Select ModifierGroups</option>
+                    @foreach (var modifiergroup in Model.ModifierGroup)
+                    {
+                        <option value="@modifiergroup.Id">@modifiergroup.Name</option>
+                    }
+                </select>
+                
 
-                                <input type="hidden" id="ItemId" name="ItemId">
+                <!-- Container for dynamically loaded modifier groups -->
+                <div class="modifierContainer" style="max-height: 360px; overflow-y: auto; padding: 5px;"></div>
+            </div>
+        </div>
+    </div>
+</form>
 
-                                <!-- Upload Image -->
-                                <div class="col-md-12 mt-3">
-                                    <label for="ItemPhoto" class="form-label">Upload Image</label>
-                                    <div class="border p-3 text-center" style="border: 2px dashed #ccc;">
-                                        <input type="file" id="ItemPhoto" name="ItemPhoto"
-                                            class="form-control d-none" />
-                                        <label for="ItemPhoto" class="text-primary">Drag and Drop or Browse
-                                            Files</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4" style="background-color: #fdf5e6;">
-                                <div class="mt-3">
-                                    <label for="ModifierGroups" class="form-label">Modifier Groups</label>
-                                    <select class="form-select" id="modifierGroupDropdownForItem" name="ModifierGroups">
-                                    <option value="" selected>Select ModifierGroups</option>
-                                    @foreach (var modifiergroup in Model.ModifierGroup)
-                                    {
-                                    <option value="@modifiergroup.Id">@modifiergroup.Name</option>
-                                    }
-                                    </select>
-                                    <input type="hidden" id="ModifierGroupIdForItemModifier"
-                                        name="ModifierGroupIdForItemModifier">
-
-                                    <!-- Container for dynamically loaded modifier groups -->
-                                    <div class="modifierContainer" style="max-height: 360px; overflow-y: auto; padding: 5px;">
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"

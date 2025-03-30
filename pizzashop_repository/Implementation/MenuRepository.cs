@@ -155,6 +155,12 @@ public class MenuRepository : IMenuRepository
         return await _context.SaveChangesAsync() > 0;
     }
 
+    public async Task<bool> AddItemModifiersAsync(List<MappingMenuItemWithModifier> mappings)
+    {
+        _context.MappingMenuItemWithModifiers.AddRange(mappings);
+        return await _context.SaveChangesAsync() > 0;
+    }
+
     public async Task<bool> UpdateItemAsync(MenuItem item)
     {
         _context.MenuItems.Update(item);
@@ -188,7 +194,12 @@ public class MenuRepository : IMenuRepository
     }
 
     public ItemViewModel GetItemById(int id)
-    {
+    {   
+        var assignedModifierGroups = _context.MappingMenuItemWithModifiers
+        .Where(m => m.MenuItemId == id)
+        .Select(m => m.ModifierGroupId)
+        .ToList();
+
         var item = _context.MenuItems
             .Where(x => x.Id == id)
             .Select(x => new ItemViewModel
@@ -205,7 +216,8 @@ public class MenuRepository : IMenuRepository
                 Description = x.Description,
                 TaxPercentage = x.TaxPercentage,
                 IsDefaultTax = x.IsdefaultTax == true ? true : false,
-                ItemImagePath = x.ItemImage
+                ItemImagePath = x.ItemImage,
+                AssignedModifierGroups = assignedModifierGroups
 
 
             }).FirstOrDefault();

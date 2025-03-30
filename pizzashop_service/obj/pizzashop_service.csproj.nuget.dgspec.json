@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_service\\pizzashop_service.csproj": {}
+    "c:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_service\\pizzashop_service.csproj": {}
   },
   "projects": {
-    "C:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_repository\\pizzashop_repository.csproj": {
+    "c:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_repository\\pizzashop_repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_repository\\pizzashop_repository.csproj",
+        "projectUniqueName": "c:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_repository\\pizzashop_repository.csproj",
         "projectName": "pizzashop_repository",
-        "projectPath": "C:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_repository\\pizzashop_repository.csproj",
+        "projectPath": "c:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_repository\\pizzashop_repository.csproj",
         "packagesPath": "C:\\Users\\rathod yash\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_repository\\obj\\",
+        "outputPath": "c:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\rathod yash\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -83,14 +83,14 @@
         }
       }
     },
-    "C:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_service\\pizzashop_service.csproj": {
+    "c:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_service\\pizzashop_service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_service\\pizzashop_service.csproj",
+        "projectUniqueName": "c:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_service\\pizzashop_service.csproj",
         "projectName": "pizzashop_service",
-        "projectPath": "C:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_service\\pizzashop_service.csproj",
+        "projectPath": "c:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_service\\pizzashop_service.csproj",
         "packagesPath": "C:\\Users\\rathod yash\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_service\\obj\\",
+        "outputPath": "c:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\rathod yash\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -105,8 +105,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_repository\\pizzashop_repository.csproj": {
-                "projectPath": "C:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_repository\\pizzashop_repository.csproj"
+              "c:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_repository\\pizzashop_repository.csproj": {
+                "projectPath": "c:\\Users\\rathod yash\\Downloads\\pizzashop-dotnet-main (1)\\pizzashop-dotnet-main\\pizzashop_repository\\pizzashop_repository.csproj"
               }
             }
           }

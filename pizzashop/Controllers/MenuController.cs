@@ -159,6 +159,19 @@ public class MenuController : Controller
         return Json(item);
     }
 
+    [HttpGet]
+    public IActionResult LoadModifierGroupsIntoModal(int id)
+    {
+        var item = _menuService.GetItemById(id);
+
+        if (item == null)
+        {
+            return NotFound();
+        }
+
+        return PartialView("_ModifierGroupPartial", item.AssignedModifierGroups);
+    }
+
 
     [HttpPost]
     public async Task<IActionResult> AddMenuItem(ItemViewModel model)
@@ -193,7 +206,6 @@ public class MenuController : Controller
 
             model.ItemImagePath = "/images/ItemImage/" + fileName;
         }
-
 
         var result = await _menuService.AddItemAsync(model);
 
@@ -459,14 +471,14 @@ public class MenuController : Controller
     [HttpGet]
     public async Task<IActionResult> GetModifierGroupForItem(int groupId)
     {
-        var modifierGroup =await _menuService.GetModifierGroupByIdForItem(groupId);
+        var modifierGroup = await _menuService.GetModifierGroupByIdForItem(groupId);
         if (modifierGroup == null)
         {
             return NotFound();
         }
         return PartialView("_ItemModifierPartial", modifierGroup);
     }
- 
+
 
 }
 
